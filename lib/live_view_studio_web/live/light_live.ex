@@ -16,6 +16,11 @@ defmodule LiveViewStudioWeb.LightLive do
     </span>
     </div>
 
+    <form phx-change="update">
+    <input type="range" min="1" max="10"
+    name="Brightness" value = 1/>
+    </form>
+
     <button phx-click="off" >
     <img src="images/light-off.svg">
     </button>
@@ -66,6 +71,9 @@ defmodule LiveViewStudioWeb.LightLive do
     {:noreply, socket}
   end
 
-
+  def handle_event("update",_params, socket) do
+    socket = assign(socket, :brightness, :rand.uniform(100))
+    {:noreply, socket}
+  end
 
 end
