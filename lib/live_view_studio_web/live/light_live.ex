@@ -2,7 +2,7 @@ defmodule LiveViewStudioWeb.LightLive do
   use LiveViewStudioWeb, :live_view
 
   def mount(_params, _session, socket)do
-   socket = assign(socket, :brightness, 10)
+   socket = assign(socket, :brightness, 0)
    {:ok, socket}
   end
 
@@ -15,11 +15,6 @@ defmodule LiveViewStudioWeb.LightLive do
     <%= @brightness %>%
     </span>
     </div>
-
-    <form phx-change="update">
-    <input type="range" min="1" max="10"
-    name="Brightness" value = 1/>
-    </form>
 
     <button phx-click="off" >
     <img src="images/light-off.svg">
@@ -41,8 +36,12 @@ defmodule LiveViewStudioWeb.LightLive do
     <img src="images/random.svg">
     </button>
 
-    </div>
+    <form phx-change="update">
+    <input type="range" min="0" max="100"
+    name="brightness" value=<%= @brightness %> defaultValue= "0"/>
+    </form>
 
+    </div>
     """
   end
 
@@ -56,7 +55,7 @@ defmodule LiveViewStudioWeb.LightLive do
     {:noreply, socket}
   end
 
-  def handle_event("down", _, socket)do
+  def handle_event("down", _params, socket)do
     socket = update(socket, :brightness, &max(&1 - 10, 0))
     {:noreply, socket}
   end
@@ -71,8 +70,8 @@ defmodule LiveViewStudioWeb.LightLive do
     {:noreply, socket}
   end
 
-  def handle_event("update",_params, socket) do
-    socket = assign(socket, :brightness, :rand.uniform(100))
+  def handle_event("update",%{"brightness" => b}, socket) do
+    socket = assign(socket, :brightness, String.to_integer(b))
     {:noreply, socket}
   end
 
