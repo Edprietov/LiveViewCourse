@@ -73,6 +73,15 @@ defmodule LiveViewStudio.Stores do
         zip: "80204",
         open: true,
         hours: "8am - 10pm M-F"
+      },
+      %{
+        name: "Tienda Pepito",
+        street: "False 312",
+        phone_number: "111-222-3100",
+        city: "Bogotá, BO",
+        zip: "84236",
+        open: true,
+        hours: "8am - 10pm M-F"
       }
     ]
   end
