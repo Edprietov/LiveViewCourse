@@ -100,6 +100,7 @@ defmodule LiveViewStudio.Cities do
       "Bloomington, MN",
       "Bloomington, IL",
       "Blue Springs, MO",
+      "Bogotá, BO",
       "Boca Raton, FL",
       "Boise City, ID",
       "Bolingbrook, IL",
